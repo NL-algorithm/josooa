@@ -17,7 +17,11 @@ for _ in range(n):
 max_dist  = 1
 
 #max_dist update
-
+for i in range(n):
+    for j in range(m):
+        for k in range(1, min(n - i, m - j)):
+            if arr[i][j] == arr[i][j + k] == arr[i + k][j] == arr[i + k][j + k]:
+                max_dist = max(max_dist, k + 1)
 
 
 #최대변**2
