@@ -13,15 +13,33 @@
 #$M$개의 줄에 차례대로 입력받은 두 노드 사이의 거리를 출력한다.
 
 import sys
-from collections import defaultdict
+from collections import defaultdict, deque
+
 n, m = list(map(int, sys.stdin.readline().split()))
 graph = defaultdict(list)
-for i in range(n-1):
-    #가중치 그래프 생성
-    u, v, w = list(map(int,sys.stdin.readline().split()))
+
+# 트리의 간선 정보 입력 및 그래프 생성
+for _ in range(n-1):
+    u, v, w = list(map(int, sys.stdin.readline().split()))
     graph[u].append((v, w))
     graph[v].append((u, w))
-    #
-for i in range(m):
+
+# 두 노드 사이의 거리를 구하는 함수 (BFS 사용)
+def get_distance(start, end):
+    visited = set()
+    queue = deque()
+    queue.append((start, 0))
+    visited.add(start)
+    while queue:
+        node, dist = queue.popleft()
+        if node == end:
+            return dist
+        for nxt, w in graph[node]:
+            if nxt not in visited:
+                visited.add(nxt)
+                queue.append((nxt, dist + w))
+    return -1  
+
+for _ in range(m):
     s, t = list(map(int, sys.stdin.readline().split()))
-    
+    print(get_distance(s, t))
