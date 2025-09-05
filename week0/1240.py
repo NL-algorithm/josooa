@@ -17,9 +17,11 @@ from collections import defaultdict
 n, m = list(map(int, sys.stdin.readline().split()))
 graph = defaultdict(list)
 for i in range(n-1):
+    #가중치 그래프 생성
     u, v, w = list(map(int,sys.stdin.readline().split()))
     graph[u].append((v, w))
     graph[v].append((u, w))
+    #
 for i in range(m):
     s, t = list(map(int, sys.stdin.readline().split()))
     
