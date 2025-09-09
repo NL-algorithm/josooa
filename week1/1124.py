@@ -41,16 +41,17 @@ def prime_count(n):
     return count
 
 def is_under(n):
-    
-    prime_count = prime_count(n)
+    if(n < 2):
+        return False
+    p = prime_count(n)
 
-    if is_prime(prime_count):
+    if is_prime(p):
         return True
     return False
 
-count = 0
+under_count = 0
 for i in range(a, b+1):
     if is_under(i):
-        count +=1
+        under_count +=1
 
-print(count)
+print(under_count)
